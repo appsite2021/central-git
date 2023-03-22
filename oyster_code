@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_ITEMS 10
+
+struct Item {
+    char name[20];
+    float price;
+};
+
+struct ShoppingBag {
+    struct Item items[MAX_ITEMS];
+    int count;
+};
+
+void addItem(struct ShoppingBag *bag, struct Item item) {
+    if (bag->count < MAX_ITEMS) {
+        bag->items[bag->count] = item;
+        bag->count++;
+        printf("%s added to the bag!\n", item.name);
+    } else {
+        printf("The bag is full!\n");
+    }
+}
+
+int main() {
+    struct ShoppingBag bag = {0};
+
+    struct Item item1 = {"T-Shirt", 12.50};
+    struct Item item2 = {"Jeans", 24.99};
+    struct Item item3 = {"Sneakers", 39.99};
+
+    addItem(&bag, item1);
+    addItem(&bag, item2);
+    addItem(&bag, item3);
+
+    return 0;
+}
+
